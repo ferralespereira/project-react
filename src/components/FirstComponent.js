@@ -1,8 +1,9 @@
-import React from 'react'
+import React, {useState} from 'react'
 
 export const FirstComponent = () => {
 
-    let name = "Javier";
+    const [name, setName] = useState("Javier");
+
     let items = [
         "item0",
         "item1",
@@ -12,10 +13,18 @@ export const FirstComponent = () => {
         "item5",
     ]
 
+    const changeName = (new_name) => {
+        setName(new_name); 
+    }
+
   return (
     <div>
         FirstComponent
-        <p>Mi name is: {name}</p>
+        <p>Mi name is: <strong className={ name.length <= 4 ? 'green' : 'red'}>{name}</strong></p>
+        
+        <input type="text" onChange={ e => changeName(e.target.value)} placeholder="Change Name"></input>
+
+        <button onClick={ e => changeName("lola")}>click here to change name to Lola</button>
 
         <ul>
             {
